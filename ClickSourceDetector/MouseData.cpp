@@ -38,7 +38,7 @@ namespace InputListener
 			}
 		}
 		// update the console
-		Helpers::updateConsole(Entry::md);
+		// Helpers::updateConsole(Entry::md);
 	}
 
 } // InputListener

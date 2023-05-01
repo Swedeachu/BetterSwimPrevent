@@ -37,7 +37,7 @@ namespace Helpers
 	void updateConsole(const InputListener::MouseData& mouseData)
 	{
 		// first abuse the os to clear all lines
-		// fstd::cout << "\033[2J\033[1;1H";
+		std::cout << "\033[2J\033[1;1H";
 		// Print the statistics
 		std::cout << "Left clicks: " << mouseData.getLeftClicks() << std::endl;
 		std::cout << "Right clicks: " << mouseData.getRightClicks() << std::endl;

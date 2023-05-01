@@ -4,6 +4,7 @@
 #include <type_traits>
 #include <cmath>
 #include "Decorations.h"
+#include "Entry.h"
 
 namespace Detections
 {
@@ -93,6 +94,8 @@ namespace Detections
 	// Checks the mouse's device info if it is from a spoofed source or not
 	void ScanMouseInputData(const RID_DEVICE_INFO& deviceInfo, const std::string& deviceNameString)
 	{
+		// just for now i update the console here
+		Helpers::updateConsole(Entry::md);
 		// Check mouse name
 		bool realMouseName = !ContainsUnicodeCharacters(deviceNameString);
 		std::string realMouseString = Helpers::boolToString(realMouseName);
