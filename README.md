@@ -18,3 +18,5 @@ Better logging, something upgraded from just a console program
 A lot of testing, try to find as many ways to bypass what I currently have
 # Disclaimer
 This is just for education purposes right now, I personally have no bias for or against cheat devs/anti cheat devs, as I enjoy making cheats and anti cheats my self :D
+# Requires C++ Redistributable
+[Download here](https://aka.ms/vs/17/release/vc_redist.x64.exe)
