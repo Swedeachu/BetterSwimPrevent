@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\InputListener">
+      <UniqueIdentifier>{f2e8c871-5d00-4b22-8add-5edb18db9a15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DesignHelpers">
+      <UniqueIdentifier>{3a7ea9c4-984e-40ab-ad04-ffaf27c1d1ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Detection">
+      <UniqueIdentifier>{e18143c6-47b6-4d7b-980c-624917df2ab3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Entry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClickHandler.cpp">
+      <Filter>Source Files\InputListener</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorations.cpp">
+      <Filter>Source Files\DesignHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseData.cpp">
+      <Filter>Source Files\InputListener</Filter>
+    </ClCompile>
+    <ClCompile Include="RawInputDataProcessor.cpp">
+      <Filter>Source Files\Detection</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ClickHandler.h">
+      <Filter>Source Files\InputListener</Filter>
+    </ClInclude>
+    <ClInclude Include="Decorations.h">
+      <Filter>Source Files\DesignHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseData.h">
+      <Filter>Source Files\InputListener</Filter>
+    </ClInclude>
+    <ClInclude Include="ClickLog.h">
+      <Filter>Source Files\InputListener</Filter>
+    </ClInclude>
+    <ClInclude Include="Entry.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RawInputDataProcessor.h">
+      <Filter>Source Files\Detection</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
