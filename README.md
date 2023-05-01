@@ -11,7 +11,7 @@ DLL enumeration checks on minecraft.exe
 <br>
 Anti debugger checks
 <br>
-Scanning memory locations siuch as reach and setting them back to default on minecraft.exe (this will be hard)
+Scanning memory locations such as reach and setting them back to default on minecraft.exe (this will be hard)
 <br>
 Better logging, something upgraded from just a console program
 <br>
