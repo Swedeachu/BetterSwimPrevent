@@ -7,6 +7,8 @@ All this currently does is prevent double clicking and log clicks in a basic con
 # To Do
 Typical checks for running cheat processes
 <br>
+Refactor project to actually be organized
+<br>
 DLL enumeration checks on minecraft.exe
 <br>
 Anti debugger checks
