@@ -5,7 +5,6 @@ Two low level hooks are made, one to hook mouse input and prevent double clicks,
 <br>
 All this currently does is prevent double clicking and log clicks in a basic console, as well as say if the mouse name, mouse info, and mouse HID is valid. Also does two basic checks on all running processes at the start for testing purposes.
 # To Do
-<br>
 DLL enumeration checks on minecraft.exe
 <br>
 Anti debugger checks
