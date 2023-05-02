@@ -7,6 +7,8 @@ All this currently does is prevent double clicking and log clicks in a basic con
 # To Do
 DLL enumeration checks on minecraft.exe
 <br>
+Window and sub window enumeration checks
+<br>
 Anti debugger checks
 <br>
 Scanning memory locations such as reach and setting them back to default on minecraft.exe (this will be hard)
