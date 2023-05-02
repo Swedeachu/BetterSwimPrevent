@@ -1,7 +1,7 @@
 # Better Swim Prevent
 A low level mouse hook to detect and prevent auto clickers, and preforms basic scans for running cheat processes
 # How it works
-Two level level hooks are made, one to hook mouse input and prevent double clicks, the other to read raw mouse input data and determine the source (if it came from a real hardware device or not)
+Two low level hooks are made, one to hook mouse input and prevent double clicks, the other to read raw mouse input data and determine the source (if it came from a real hardware device or not)
 <br>
 All this currently does is prevent double clicking and log clicks in a basic console, as well as say if the mouse name, mouse info, and mouse HID is valid.
 # To Do
