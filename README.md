@@ -4,10 +4,9 @@ A low level mouse hook to detect and prevent auto clickers, and preforms basic s
 Two low level hooks are made, one to hook mouse input and prevent double clicks, the other to read raw mouse input data and determine the source (if it came from a real hardware device or not)
 <br>
 All this currently does is prevent double clicking and log clicks in a basic console, as well as say if the mouse name, mouse info, and mouse HID is valid.
-# To Do
-Typical checks for running cheat processes
 <br>
-Refactor project to actually be organized
+Now has two basic running process checks that runs once at the start for testing purposes.
+# To Do
 <br>
 DLL enumeration checks on minecraft.exe
 <br>
