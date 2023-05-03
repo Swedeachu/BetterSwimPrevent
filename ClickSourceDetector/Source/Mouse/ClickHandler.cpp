@@ -93,8 +93,7 @@ namespace InputListener
 						TCHAR deviceName[256];
 						UINT deviceNameSize = sizeof(deviceName);
 						GetRawInputDeviceInfo(deviceHandle, RIDI_DEVICENAME, deviceName, &deviceNameSize);
-						std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
-						std::string deviceNameString = converter.to_bytes(deviceName);
+						std::string deviceNameString = Helpers::convertWideStringToString(deviceName);
 
 						/* don't have a reason to get preparsed data, leaving as a comment though in case we ever do
 						// Determine the size of the pre-parsed data

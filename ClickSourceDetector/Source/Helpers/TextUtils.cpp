@@ -1,3 +1,5 @@
+#define _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS
+
 #include "Helpers/stdafx.h"
 
 #include <Windows.h>
@@ -22,7 +24,6 @@ namespace Helpers
 		// Convert and return the wide string to a UTF-8 encoded byte string
 		return converter.to_bytes(wideStr);
 	}
-
 
 	// prints colored text to the console window
 	void printColoredText(const std::string& text, WORD color)
