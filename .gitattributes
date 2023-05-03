@@ -64,3 +64,4 @@
 
 # Treat header files (.h) as C++ code
 *.h    diff=cpp
+*.h linguist-language=C++
