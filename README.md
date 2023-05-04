@@ -7,7 +7,7 @@ All this currently does is prevent double clicking and log clicks in a basic con
 # To Do
 DLL enumeration checks on minecraft.exe
 <br>
-Window and sub window enumeration checks
+Implement as many process scan checks as possible
 <br>
 Anti debugger checks
 <br>
