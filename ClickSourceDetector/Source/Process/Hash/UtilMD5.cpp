@@ -169,6 +169,10 @@ namespace Hash
 	{L"bf0d96e4046134b854b5467fa365ef78", L"nitro"},
 	{L"d02140e2d65107f79ac52eea83698535", L"nitro"},
 	{L"45947390ad0391be18fc5e503f9cd66e", L"nitro"},
+	{L"cef0ec6f3332ef60a87ac4003f4dbe6d", L"nitro"},
+	{L"10af2d94f7710876142f60244911addc", L"nitro"},
+	{L"96cc083b1cb50e9d914f8f8785c4ab35", L"nitro"},
+	{L"5d90bf948c41ac2c4789bda9d948323f", L"cnd"},
 	};
 
 } // Hash

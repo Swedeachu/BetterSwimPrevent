@@ -18,6 +18,8 @@ namespace Detections
 	std::vector<std::string> illegalStrings = {
 		"nitr0",
 		"nitro",
+		"speedhack",
+		"speed hack",
 		"horion",
 		"lakeside",
 		"ambrosial",
@@ -42,8 +44,8 @@ namespace Detections
 		"swiftclient",
 		"swift client",
 		"auto clicker",
-		"clicker",
 		"nitr0 lite",
+		"nitro lite",
 		"luconia",
 		"strikeinjector",
 		"fadedinjector",
@@ -73,14 +75,17 @@ namespace Detections
 		"ventile client",
 		"cnd client",
 		"cnd authentication",
+		"cnd injector",
+		"cndv1",
 		"ascendancy client",
 		"sp0tify client",
 		"jarjar client",
 		"saka client",
-		"crypto client",
+		"crypt client",
 		"openprocess",
 		"readprocess",
-		"slinky"
+		"slinky",
+		"bearcl1ck3r",
 	};
 
 	Helpers::StringBlockList stringList(illegalStrings);

@@ -13,6 +13,6 @@ namespace Hash
 
 	extern std::unordered_map<std::wstring, std::wstring> mappedHashes;
 
-}
+} // Hash
 
 #endif // UtilMD5.h
