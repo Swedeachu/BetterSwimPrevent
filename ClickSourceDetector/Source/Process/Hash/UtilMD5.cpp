@@ -85,10 +85,9 @@ namespace Hash
 	{L"09a637f677110149c6e43223ef77daa7", L"ascendancy.exe"},
 	{L"689aead0bdf3f68f3a5f1273cce7ed04", L"fake svhost"},
 	{L"9e6de7c7ebd1a00c2f7ddec78ba9403a", L"fate injector.exe"},
-	//{L"8e20218dfef733ffd8fa284d4e1baf78", L"old onix injector.exe"},
-	//{L"e4759b2e6aff7e4d18a02f8e1fe2223d", L"onix launcher.exe"},
-	//{L"b91ab28db07f131095929ebf7a0e6b8a", L"onix.dlL"},
-	//{L"cacaafec50116b8120027954bad9afdd", L"onix injector.exe"},
+	{L"8e20218dfef733ffd8fa284d4e1baf78", L"old onix injector.exe"},
+	{L"e4759b2e6aff7e4d18a02f8e1fe2223d", L"onix launcher.exe"},
+	{L"cacaafec50116b8120027954bad9afdd", L"onix injector.exe"},
 	{L"4d7be1a6dad181d0e42afa7ac7d8a872", L"helix.dlL"},
 	{L"689c0ad4003f1feab8ec45b281489460", L"helix alpha.exe"},
 	{L"0ec153e4eabb1aa5dfe11fd16ed1ea23", L"helix pvp injector.exe"},
@@ -173,6 +172,9 @@ namespace Hash
 	{L"10af2d94f7710876142f60244911addc", L"nitro"},
 	{L"96cc083b1cb50e9d914f8f8785c4ab35", L"nitro"},
 	{L"5d90bf948c41ac2c4789bda9d948323f", L"cnd"},
+	{L"6b5b6e625de774e5c285712b7c4a0da7", L"horion"},
+	{L"b37f82b975b66aa1b3bce59a7de758eb", L"Ascendency clicker"},
+	{L"6eb9344368799cd262776f5fb471d760", L"Ascendency clicker"},
 	};
 
 } // Hash

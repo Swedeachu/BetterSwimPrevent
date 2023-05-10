@@ -72,6 +72,9 @@
     <ClCompile Include="Source\Helpers\stdafx.cpp">
       <Filter>Source Files\Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Helpers\FileUtils.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Entry.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files\Helpers</Filter>
     </ClInclude>
     <ClInclude Include="Source\Helpers\stdafx.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Helpers\FileUtils.h">
       <Filter>Header Files\Helpers</Filter>
     </ClInclude>
   </ItemGroup>

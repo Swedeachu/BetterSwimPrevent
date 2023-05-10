@@ -84,6 +84,8 @@ namespace Detections
 		"crypt client",
 		"openprocess",
 		"readprocess",
+		"readprocessmemory",
+		"writeprocessmemory",
 		"slinky",
 		"bearcl1ck3r",
 	};

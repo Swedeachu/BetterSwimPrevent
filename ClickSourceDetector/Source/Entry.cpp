@@ -1,7 +1,5 @@
 #include "Helpers/stdafx.h"
 
-#include <Windows.h>
-
 #include "Mouse/ClickHandler.h"
 #include "Mouse/MouseData.h"
 #include "Helpers/TextUtils.h"

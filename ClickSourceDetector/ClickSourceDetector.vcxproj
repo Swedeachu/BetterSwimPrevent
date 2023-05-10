@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Entry.cpp" />
+    <ClCompile Include="Source\Helpers\FileUtils.cpp" />
     <ClCompile Include="Source\Helpers\TextUtils.cpp" />
     <ClCompile Include="Source\Helpers\stdafx.cpp" />
     <ClCompile Include="Source\Helpers\StringBlockList.cpp" />
@@ -33,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Entry.h" />
+    <ClInclude Include="Source\Helpers\FileUtils.h" />
     <ClInclude Include="Source\Helpers\TextUtils.h" />
     <ClInclude Include="Source\Helpers\stdafx.h" />
     <ClInclude Include="Source\Helpers\StringBlockList.h" />

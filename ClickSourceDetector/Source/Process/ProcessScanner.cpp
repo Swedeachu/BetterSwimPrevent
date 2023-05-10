@@ -1,7 +1,5 @@
 #include "Helpers/stdafx.h"
 
-#include <Windows.h>
-#include <filesystem>
 #include <thread>
 #include <mutex>
 #include <future>
@@ -15,30 +13,12 @@
 #include "Hash\UtilMD5.h"
 #include "CheatProcessList.h"
 #include "Helpers\TextUtils.h"
+#include "Helpers\FileUtils.h"
 
 namespace Detections
 {
 	// we use mutex so the console can't get spammed
 	std::mutex coutMutex;
-
-	// Get the file path of a process
-	std::wstring GetProcessFilePath(const HANDLE& processHandle)
-	{
-		WCHAR processName[MAX_PATH] = { 0 };
-		if (GetModuleFileNameExW(processHandle, NULL, processName, MAX_PATH) == 0)
-		{
-			CloseHandle(processHandle);
-			return L"Error";
-		}
-		return processName;
-	}
-
-	// "C:\\Program Files\\Dir\\program.exe" would return "program.exe"
-	std::string GetFileName(const std::string& path)
-	{
-		std::filesystem::path filePath(path);
-		return filePath.filename().string();
-	}
 
 	// Get title text of a window
 	std::wstring GetWindowTitle(HWND hwnd)
@@ -59,16 +39,67 @@ namespace Detections
 		// Check if the module was not loaded from somewhere normal
 		// (modulePath.find() == std::wstring::npos) checks if the specified substring is not found in the modulePath wstring object 
 		if (modulePath.find(L"system32") == std::wstring::npos &&
-						modulePath.find(L"syswow64") == std::wstring::npos &&
-						modulePath.find(L"program files") == std::wstring::npos &&
-						modulePath.find(L"program files (x86)") == std::wstring::npos)
+			modulePath.find(L"syswow64") == std::wstring::npos &&
+			modulePath.find(L"program files") == std::wstring::npos &&
+			modulePath.find(L"program files (x86)") == std::wstring::npos)
 		{
 			return true; // this is an immediate red flag, all modules should be loaded from system directories and program files directories
 		}
 		return false;
 	}
 
-	// checks every loaded dll on the process
+	// scan a singular module
+	void ScanModule(const MODULEENTRY32W& moduleEntry)
+	{
+		// check if module is blatantly named something illegal
+		std::string moduleName = Helpers::convertWideStringToString(moduleEntry.szModule);
+		std::string nameResult = checkIllegalString(moduleName);
+		if (nameResult != "0")
+		{
+			std::cout << "Illegal module found: " << moduleName << " | " << nameResult << std::endl;
+		}
+		// check if DLL was loaded from somewhere illegal
+		if (IsIllegallyLoadedDLL(moduleEntry))
+		{
+			std::string modulePath = Helpers::convertWideStringToString(moduleEntry.szExePath);
+			std::cout << "Illegally loaded module found: " << moduleName << " | " << modulePath << std::endl;
+		}
+		// check if DLL is unsigned 
+		Helpers::FileSignerInfo info = Helpers::GetFileSignerInfo(moduleEntry.szExePath);
+		if (info.copyright == L"none" || info.productName == L"none" || info.productVersion == L"none")
+		{
+			// however there are some unsigned dlls we can allow based on where they were loaded from
+			std::wstring modulePath(moduleEntry.szExePath);
+			std::transform(modulePath.begin(), modulePath.end(), modulePath.begin(), ::tolower);
+			bool isInSystem32 = modulePath.find(L"c:\\windows\\system32") != std::wstring::npos;
+			bool isInWindowsApps = modulePath.find(L"c:\\program files\\windowsapps") != std::wstring::npos;
+			if (!isInSystem32 && !isInWindowsApps)
+			{
+				std::string modulePathStr = Helpers::convertWideStringToString(moduleEntry.szExePath);
+				std::cout << "Illegal unsigned module detected: " << modulePathStr << std::endl;
+				//std::wcout << L"   Product Name: " << info.productName << std::endl;
+				//std::wcout << L"   Product Version: " << info.productVersion << std::endl;
+				//std::wcout << L"   Copyright: " << info.copyright << std::endl;
+			}
+		}
+		else
+		{
+			// check copy right info for illegal strings
+			std::string copyrightResult = checkIllegalString(Helpers::convertWideStringToString(info.copyright));
+			if (copyrightResult != "0")
+			{
+				std::wcout << L"Illegally signed module found: " << moduleEntry.szModule << " | " << info.copyright << std::endl;
+			}
+			// check product name for illegal strings
+			std::string productNameResult = checkIllegalString(Helpers::convertWideStringToString(info.productName));
+			if (productNameResult != "0")
+			{
+				std::wcout << L"Illegally signed module found: " << moduleEntry.szModule << " | " << info.productName << std::endl;
+			}
+		}
+	}
+
+	// checks every loaded dll on the process by calling ScanModule() on each one
 	void ScanProcessModules(const DWORD& pid)
 	{
 		int moduleCount = 0;
@@ -88,19 +119,7 @@ namespace Detections
 			do
 			{
 				moduleCount++;
-				// check if module is blatantly named something illegal
-				std::string moduleName = Helpers::convertWideStringToString(moduleEntry.szModule);
-				std::string nameResult = checkIllegalString(moduleName);
-				if (nameResult != "0")
-				{
-					std::cout << "Illegal module found: " << moduleName << " | " << nameResult << std::endl;
-				}
-				// check if DLL was loaded from somewhere illegal
-				if (IsIllegallyLoadedDLL(moduleEntry))
-				{
-					std::string modulePath = Helpers::convertWideStringToString(moduleEntry.szExePath);
-					std::cout << "Illegally loaded module found: " << moduleName << " | " << modulePath << std::endl;
-				}
+				ScanModule(moduleEntry);
 			}
 			// Continue enumerating modules until Module32Next returns FALSE
 			while (Module32Next(snapshot, &moduleEntry));
@@ -117,7 +136,7 @@ namespace Detections
 	void ScanProcess(const HWND& windowHandle, DWORD pid, const HANDLE& processHandle)
 	{
 		// Get the process name 
-		std::wstring processFilePath = GetProcessFilePath(processHandle);
+		std::wstring processFilePath = Helpers::GetProcessFilePath(processHandle);
 		// Get the hash
 		std::wstring hash = Hash::MD5Checksum(processFilePath);
 		// Get the window title
@@ -134,7 +153,7 @@ namespace Detections
 			}
 			// scan the process name
 			std::string procString = Helpers::convertWideStringToString(processFilePath);
-			std::string procName = GetFileName(procString);
+			std::string procName = Helpers::GetFileName(procString);
 			std::string nameResult = checkIllegalString(procName);
 			if (nameResult != "0")
 			{
@@ -146,8 +165,18 @@ namespace Detections
 			{
 				std::cout << "Illegal Process Title found: " << windowResult << std::endl;
 			}
-			// now scan Minecraft's modules
-			if (procName == "Minecraft.Windows.exe")
+			// check if process is not signed (TO DO: log all unsigned processes)
+			Helpers::FileSignerInfo info = Helpers::GetFileSignerInfo(processFilePath);
+			if (info.copyright == L"none" || info.productName == L"none" || info.productVersion == L"none")
+			{
+				// if a process is found and not signed we should string search it if is under 5 MB
+				if (Helpers::GetFileSize(processFilePath) <= 5000000)
+				{
+					// ScanProcessStrings(processHandle);
+				}
+			}
+			// scan Minecraft's modules
+			if (procName == "Minecraft.Windows.exe" || windowTitle == L"Minecraft")
 			{
 				ScanProcessModules(pid);
 			}
@@ -156,7 +185,7 @@ namespace Detections
 		CloseHandle(processHandle);
 	}
 
-	// Scans all running processes in around 1 second via multi threading (pooling)
+	// Scans all running processes in around 1-2 seconds via multi threading (pooling)
 	void CheckRunningProcesses()
 	{
 		// Start the timer

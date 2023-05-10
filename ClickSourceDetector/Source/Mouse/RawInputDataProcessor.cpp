@@ -1,9 +1,9 @@
 #include "Helpers/stdafx.h"
 
-#include <windows.h>
 #include <regex>
 #include <type_traits>
 #include <cmath>
+
 #include "Helpers/TextUtils.h"
 #include "Entry.h"
 

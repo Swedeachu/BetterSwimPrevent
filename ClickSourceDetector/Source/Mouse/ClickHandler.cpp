@@ -1,9 +1,9 @@
 #include "Helpers/stdafx.h"
 
-#include <Windows.h>
 #include <locale>
 #include <codecvt>
 #include <chrono>
+
 #include "Helpers/TextUtils.h"
 #include "Entry.h"
 #include "RawInputDataProcessor.h"
